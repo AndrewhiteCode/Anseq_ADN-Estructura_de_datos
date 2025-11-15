@@ -11,11 +11,24 @@ void genesRecognition(char *sequence, int seqLenght, int geneLenght, trieTree ro
     (void)root; // para que no dé warning mientras no lo uses
 
     for (int i = 0; i <= (seqLenght - geneLenght); i++) {
+        
         char gene[geneLenght + 1];
-
         strncpy(gene, &sequence[i], geneLenght);
         gene[geneLenght] = '\0';
 
-        printf("Se va a buscar el gen %s en la posición %d\n", gene, i);
+        printf("Looking for [%s], path: ", gene);
+        trieTree leaf = findGeneLeaf(root, gene);
+        
+        arrayNode newArrayNode = malloc(sizeof(struct arrayNode));
+        newArrayNode->index = i;
+
+        if (leaf->head->index == -1){
+            leaf->head = newArrayNode;
+            printf("%c] was chosen. Array found empty, index [%d] inserted", leaf->l, i);
+        } else{
+            insertArrayNode(leaf->head, newArrayNode);
+            printf("%c] was chosen, index [%d] inserted", leaf->l, i);
+        }
     }
 }
+

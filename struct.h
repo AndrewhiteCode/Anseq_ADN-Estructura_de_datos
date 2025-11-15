@@ -24,12 +24,13 @@ struct tTreeNode {
     arrayNode head;  // solo tiene datos en hojas
 };
 
-/* Prototipos de las funciones que ya tienes */
+/* Prototipos de las funciones */
 trieTree createTrieTree(int treeSize, char letter);
 trieTree findGeneLeaf(trieTree root, const char *gene);
 
 void genesRecognition(char *sequence, int seqLenght, int geneLenght, trieTree root);
 void insertArrayNode(arrayNode currNode, arrayNode newArrayNode);
 void insertGene(trieTree root, const char *gene, int genePos);
+
 
 #endif
