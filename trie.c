@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdlib.h>
 #include "struct.h"
 
 /* Crea un trie completo de altura treeSize.
@@ -72,25 +73,73 @@ trieTree findGeneLeaf(trieTree root , const char *gene){
     for (int i = 0; gene[i] !='\0' ; i++){
         char c = gene[i];
         current = getChildForChar(current, c);
-        printf("%c", current->l);
         if (current == NULL){
             //el camino no existe o caracter invalido
             return NULL;
         }
         //aqui deberiamos estar en la hoja correpondiente al gene
-        printf("\n");
+        
     }
     return current;
 }
 
 //inserta newarray al final de la lista que comienza
-void insertArrayNode(arrayNode currNode, arrayNode newArrayNode){
-  
-    if (currNode -> next == NULL ){
-        currNode -> next = newArrayNode;
-    }else {
-        insertArrayNode(currNode -> next, newArrayNode);
+void insertGene (trieTree root, const char *gene, int genePos, arrayNode uniqueGeneArray){
+    trieTree leaf = findGeneLeaf(root,gene);
+    if(leaf == NULL){
+        printf("-> no leaf found for %s\n", gene);
+        return;
     }
-        
+    arrayNode newArrayNode = malloc(sizeof(struct arrayNode));
+    if (newArrayNode == NULL){
+        printf("ERROR: no se pudo asignar memoria para indicar el indice %d del gen %s\n", genePos, gene);
+        return;
+    }
+    newArrayNode->index = genePos;
+    newArrayNode->next = NULL;
+
+    if(leaf->head == NULL){
+        leaf->head = newArrayNode;
+
+        arrayNode newUniqueGene = malloc(sizeof(struct arrayNode));
+        if (newUniqueGene == NULL){
+            printf("ERROR: no se pudo asignar memoria para añadir un nuevo gen único\n");
+            return;
+        }
+        newUniqueGene->geneName = gene;
+        newUniqueGene->next = NULL;
+        if (uniqueGeneArray == NULL){
+            uniqueGeneArray = newUniqueGene;
+        }
+        else{
+            insertArrayNode(uniqueGeneArray, newUniqueGene);
+        }
+        printf("Nuevo gen detectado: [%s]\n", gene);
+
+    }else {
+        insertArrayNode(leaf->head, newArrayNode);
+    }
 }
 
+void insertArrayNode(arrayNode currNode, arrayNode newNode){
+    if (currNode->next == NULL){
+        currNode->next = newNode;
+    } else {
+        insertArrayNode(currNode->next, newNode);
+    }
+}
+
+int arrayLenght(arrayNode head, int cont){
+    cont++;
+    if (head->next == NULL) return cont;
+    else {return arrayLenght(head->next, cont);}
+}
+
+void showMostRepetitions(trieTree root, arrayNode uniqueGeneArray){
+    const char currGene = uniqueGeneArray->geneName;
+    trieTree leaf;
+    while (currGene != NULL){
+        leaf = findGeneLeaf(root, currGene);
+        
+    }
+}

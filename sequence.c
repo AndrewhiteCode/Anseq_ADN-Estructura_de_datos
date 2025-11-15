@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "struct.h"
 
 /* Esta función recorre la secuencia, identifica cada gen
@@ -8,7 +9,6 @@
  * insertar la posición en la hoja correspondiente.
  */
 void genesRecognition(char *sequence, int seqLenght, int geneLenght, trieTree root) {
-    (void)root; // para que no dé warning mientras no lo uses
 
     for (int i = 0; i <= (seqLenght - geneLenght); i++) {
         
@@ -17,18 +17,8 @@ void genesRecognition(char *sequence, int seqLenght, int geneLenght, trieTree ro
         gene[geneLenght] = '\0';
 
         printf("Looking for [%s], path: ", gene);
-        trieTree leaf = findGeneLeaf(root, gene);
-        
-        arrayNode newArrayNode = malloc(sizeof(struct arrayNode));
-        newArrayNode->index = i;
-
-        if (leaf->head->index == -1){
-            leaf->head = newArrayNode;
-            printf("%c] was chosen. Array found empty, index [%d] inserted", leaf->l, i);
-        } else{
-            insertArrayNode(leaf->head, newArrayNode);
-            printf("%c] was chosen, index [%d] inserted", leaf->l, i);
-        }
+        insertGene(root, gene, i);
     }
 }
+
 
