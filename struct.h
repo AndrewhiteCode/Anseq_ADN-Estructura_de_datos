@@ -26,7 +26,7 @@ struct tTreeNode {
 
 /* Prototipos de las funciones que ya tienes */
 trieTree createTrieTree(int treeSize, char letter);
-trieTree findGeneLeaf(char* gene, int genePos, int index, trieTree node);
+trieTree findGeneLeaf(trieTree root, const char *gene);
 
 void genesRecognition(char *sequence, int seqLenght, int geneLenght, trieTree root);
 void insertArrayNode(arrayNode currNode, arrayNode newArrayNode);

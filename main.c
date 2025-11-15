@@ -1,6 +1,6 @@
+#include "struct.h"
 #include <stdio.h>
 #include <string.h>
-#include "struct.h"
 
 int main(void) {
 

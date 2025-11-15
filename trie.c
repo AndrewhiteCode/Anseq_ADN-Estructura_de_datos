@@ -35,7 +35,7 @@ trieTree createTrieTree(int treeSize, char letter) {
             printf("ERROR: Memory allocation for array head in leaf %c was not possible.\n", letter);
         } 
         else {
-            head->index = 7;
+            head->index = -1;
             head->next  = NULL;
             node->head  = head;
         }
@@ -44,45 +44,53 @@ trieTree createTrieTree(int treeSize, char letter) {
     return node;
 }
 
-
-void insertArrayNode(arrayNode currNode, arrayNode newArrayNode){
-    if (currNode->next == NULL){
-        currNode->next = newArrayNode;
-    } else{
-        insertArrayNode(currNode->next, newArrayNode);
-    }
-}
-
 //pero creo que entiend a que te refieres, es para despues recibir el puntero a la hoja, ok
+//Modifique el struct para que reciba root y *gene , por lo tanto
+//trieTree findGeneLeaf(trieTree root, const char *gene) 
+//Pero necesita los auxiliares
+//van por aparte
 
-trieTree findGeneLeaf(char* gene, int genePos, int index, trieTree node){
-    if (node->head != NULL){
- 
-        //Array node memory assignment
-        arrayNode newArrayNode = malloc(sizeof(struct arrayNode));
-        newArrayNode->index = genePos;
-
-        if (node->head->index == NULL){
-            node->head = newArrayNode;
-            printf("%c] was chosen. Array found empty, index [%d] inserted", node->l, genePos);
-        } else{
-            insertArrayNode(node->head, newArrayNode);
-            printf("%c] was chosen, index [%d] inserted", node->l, genePos);
-        }
-        return node;
-    }
-    
-    if (gene[index] == 'A'){
-        findGeneLeaf(gene, genePos, index+1, node->A);
-        printf("A ");
-    } else if (gene[index] == 'C'){
-        findGeneLeaf(gene, genePos, index+1, node->C);
-        printf("C ");
-    } else if (gene[index] == 'G'){
-        findGeneLeaf(gene, genePos, index+1, node->G);
-        printf("G ");
-    } else if (gene[index] == 'T'){
-        findGeneLeaf(gene, genePos, index+1, node->T);
-        printf("T ");
+//okei entiendo
+static trieTree getChildForChar(trieTree node , char c){
+    if (node == NULL) return NULL;
+    switch (c){
+        case 'A': return node->A;
+        case 'C': return node->C;
+        case 'G': return node->G;
+        case 'T': return node->T;
+    default:
+        return NULL; //Caracter invalido
     }
 }
+//asi encuentra la hoja del gen
+trieTree findGeneLeaf(trieTree root , const char *gene){
+    if (root == NULL || gene == NULL){
+        return NULL;
+    }
+    trieTree current = root;
+
+    for (int i = 0; gene[i] !='\0' ; i++){
+        char c = gene[i];
+        current = getChildForChar(current, c);
+        printf("%c", current->l);
+        if (current == NULL){
+            //el camino no existe o caracter invalido
+            return NULL;
+        }
+        //aqui deberiamos estar en la hoja correpondiente al gene
+        printf("\n");
+    }
+    return current;
+}
+
+//inserta newarray al final de la lista que comienza
+void insertArrayNode(arrayNode currNode, arrayNode newArrayNode){
+  
+    if (currNode -> next == NULL ){
+        currNode -> next = newArrayNode;
+    }else {
+        insertArrayNode(currNode -> next, newArrayNode);
+    }
+        
+}
+
