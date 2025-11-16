@@ -3,23 +3,24 @@
 #include <string.h>
 #include <stdlib.h>
 
-int main(void) {
+int main(void) 
+{
+
+    int geneLenght  = 3;
+    char childKeys[] = {'A', 'C', 'G', 'T'};
+    char nameBuffer[geneLenght];
 
     // Crear trie de altura 3 con raíz 'R'
-    trieTree root = createTrieTree(3, 'R');
+    trieTree root = createTrieTree(3, 0, 'R', nameBuffer, childKeys);
     if (root == NULL) {
         return 1;
     }
 
-    //This will be a temporary dynamic array that stores all genes recognized in the tree
-    arrayNode uniqueGeneArray = NULL;
-
     // Secuencia de prueba (antes tenías un char[19] sin inicializar + strcat)
     char sequence[] = "ATCGATCGATCGATTCGA";
     int seqLenght   = (int)strlen(sequence);
-    int geneLenght  = 3;
 
-    genesRecognition(sequence, seqLenght, geneLenght, root, uniqueGeneArray);
+    genesRecognition(sequence, seqLenght, geneLenght, root);
     
 
 

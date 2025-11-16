@@ -9,27 +9,30 @@ typedef struct tTreeNode *trieTree;
 typedef struct tTreeNode *treeNodePos;
 
 /* Lista enlazada de índices para un gen */
-struct arrayNode {
+struct arrayNode 
+{
     int index;
-    char* geneName; //Used for temporary gene list
     arrayNode next;
+    // char* geneName; //Used for temporary gene list
 };
 
 /* Nodo del trie 4-ario */
-struct tTreeNode {
+struct tTreeNode 
+{
     char l;          // letra del nodo (A, C, G, T o R en la raíz)
-    trieTree A;
-    trieTree C;
-    trieTree G;
-    trieTree T;
-    arrayNode head;  // solo tiene datos en hojas
+    trieTree childNodes[4];
+
+    //Only for leaf nodes
+    arrayNode head;  
+    int arrayLenght;
+    char* geneName;
 };
 
 /* Prototipos de las funciones */
-trieTree createTrieTree(int treeSize, char letter);
+trieTree createTrieTree(int treeSize, int currLevel, char letter, char* nameBuffer, char* childKeys);
 trieTree findGeneLeaf(trieTree root, const char *gene);
 
-void genesRecognition(char *sequence, int seqLenght, int geneLenght, trieTree root, arrayNode uniqueGeneArray);
+void genesRecognition(char *sequence, int seqLenght, int geneLenght, trieTree root);
 void insertArrayNode(arrayNode currNode, arrayNode newArrayNode);
 void insertGene(trieTree root, const char *gene, int genePos);
 void showMostRepetitions(trieTree root, arrayNode uniqueGeneArray);

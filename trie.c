@@ -1,16 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdlib.h>
+#include <string.h>
 #include "struct.h"
 
 /* Crea un trie completo de altura treeSize.
  * letter es la letra que se guarda en este nodo.
  */
-trieTree createTrieTree(int treeSize, char letter) {
-
+trieTree createTrieTree(int treeSize, int currLevel, char letter, char* nameBuffer, char* childKeys) 
+{
     // Node creation with memory assignment
     trieTree node = malloc(sizeof(struct tTreeNode));
-    if (node == NULL) {
+    if (node == NULL) 
+    {
         printf(
             "ERROR: Memory allocation for node '%c' with height '%d' was not possible\n",
             letter, treeSize
@@ -19,30 +21,60 @@ trieTree createTrieTree(int treeSize, char letter) {
     }
 
     node->l = letter;
-    node->A = node->C = node->G = node->T = NULL;
+    node->childNodes[0] = node->childNodes[1] = 
+    node->childNodes[2] = node->childNodes[3] = NULL;
     node->head = NULL;
+    node->arrayLenght = -1;
 
-    if (treeSize > 0) {
-        int nextHeight = treeSize - 1;
+    if (currLevel < treeSize) {
+        //Inner node creation
+        for (int i = 0; i < 4; i++){
+            
+            if (currLevel != 0) nameBuffer[currLevel-1] = letter; 
 
-        node->A = createTrieTree(nextHeight, 'A');
-        node->C = createTrieTree(nextHeight, 'C');
-        node->G = createTrieTree(nextHeight, 'G');
-        node->T = createTrieTree(nextHeight, 'T');
+            node->childNodes[i] = 
+            createTrieTree(treeSize, currLevel+1, childKeys[i], nameBuffer, childKeys);
+        }
     } else {
+        //Leaf creation
+        nameBuffer[currLevel-1] = letter;
 
         arrayNode head = malloc(sizeof(struct arrayNode));
         if (head == NULL) {
             printf("ERROR: Memory allocation for array head in leaf %c was not possible.\n", letter);
-        } 
-        else {
-            head->index = -1;
-            head->next  = NULL;
-            node->head  = head;
+        } else {
+
+            node->geneName = malloc(strlen(nameBuffer)+1);
+            if (node->geneName == NULL){
+                printf("ERROR: Memory allocation for gene name in leaf %c was not possible\n", letter);
+            } else {
+                
+                strcpy(node->geneName, nameBuffer);
+                head->index = -1;
+                head->next  = NULL;
+                node->head  = head;
+                node->arrayLenght = 0;
+
+                printf("Leaf {%s} created\n", node->geneName);
+            }            
         }
     }
 
+
     return node;
+
+    /* Funcion creadora antigua
+    if (currLevel < treeSize) {
+        
+
+        int nextHeight = treeSize - 1;
+        char nameChildA[treeSize], nameChildC[treeSize], nameChildG[treeSize], nameChildC[treeSize];
+        strncpy(nameChildA, geneName);
+        node->A = createTrieTree(nextHeight, 'A');
+        node->C = createTrieTree(nextHeight, 'C');
+        node->G = createTrieTree(nextHeight, 'G');
+        node->T = createTrieTree(nextHeight, 'T');
+    }*/ 
 }
 
 //pero creo que entiend a que te refieres, es para despues recibir el puntero a la hoja, ok
@@ -55,10 +87,10 @@ trieTree createTrieTree(int treeSize, char letter) {
 static trieTree getChildForChar(trieTree node , char c){
     if (node == NULL) return NULL;
     switch (c){
-        case 'A': return node->A;
-        case 'C': return node->C;
-        case 'G': return node->G;
-        case 'T': return node->T;
+        case 'A': return node->childNodes[0];
+        case 'C': return node->childNodes[1];
+        case 'G': return node->childNodes[2];
+        case 'T': return node->childNodes[3];
     default:
         return NULL; //Caracter invalido
     }
@@ -84,7 +116,7 @@ trieTree findGeneLeaf(trieTree root , const char *gene){
 }
 
 //inserta newarray al final de la lista que comienza
-void insertGene (trieTree root, const char *gene, int genePos, arrayNode uniqueGeneArray){
+void insertGene (trieTree root, const char *gene, int genePos){
     trieTree leaf = findGeneLeaf(root,gene);
     if(leaf == NULL){
         printf("-> no leaf found for %s\n", gene);
@@ -100,8 +132,9 @@ void insertGene (trieTree root, const char *gene, int genePos, arrayNode uniqueG
 
     if(leaf->head == NULL){
         leaf->head = newArrayNode;
+        leaf->arrayLenght = 1;
 
-        arrayNode newUniqueGene = malloc(sizeof(struct arrayNode));
+        /*ArrayNode newUniqueGene = malloc(sizeof(struct arrayNode));
         if (newUniqueGene == NULL){
             printf("ERROR: no se pudo asignar memoria para añadir un nuevo gen único\n");
             return;
@@ -113,12 +146,14 @@ void insertGene (trieTree root, const char *gene, int genePos, arrayNode uniqueG
         }
         else{
             insertArrayNode(uniqueGeneArray, newUniqueGene);
-        }
-        printf("Nuevo gen detectado: [%s]\n", gene);
+        }*/
+
 
     }else {
         insertArrayNode(leaf->head, newArrayNode);
+        (leaf->arrayLenght)++;
     }
+    printf("Gene[%s] Index[%d] inserted in Leaf[%s]Lenght[%d].\n", gene, genePos, leaf->geneName, leaf->arrayLenght);
 }
 
 void insertArrayNode(arrayNode currNode, arrayNode newNode){
@@ -129,17 +164,37 @@ void insertArrayNode(arrayNode currNode, arrayNode newNode){
     }
 }
 
+//Cont should be 0
 int arrayLenght(arrayNode head, int cont){
     cont++;
     if (head->next == NULL) return cont;
     else {return arrayLenght(head->next, cont);}
 }
 
-void showMostRepetitions(trieTree root, arrayNode uniqueGeneArray){
-    const char currGene = uniqueGeneArray->geneName;
-    trieTree leaf;
-    while (currGene != NULL){
-        leaf = findGeneLeaf(root, currGene);
-        
+//Recursive function to find longest array lenght (of indexes)
+void findLongest(trieTree node, int* longest){
+    
+    if (node->head != NULL){
+        //Leaf found
+        if (node->arrayLenght > (*longest)){
+            //Longest updated
+            (*longest) = node->arrayLenght;
+        }
+        return;
+
+    } else {
+        for (int i = 0; i < 4; i++){
+            findLongest(node->childNodes[i], longest);
+        }
     }
+    return;
 }
+
+void showArrayByLenght();
+//Toi sacando la basura
+//Echale un ojo al código pa que caches cómo vamos
+//Calquier pregunta me dice
+//nao yo linux, por?
+//por ahora solo puedo ejecutar yo
+//pero puedes descargar los archivos y correrlos en tu pc
+// voy tratar de arreglar los errores .....🦈
