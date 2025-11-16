@@ -16,7 +16,7 @@ int main(void)
 
     int geneLenght  = 3;
     char childKeys[] = {'A', 'C', 'G', 'T'};
-    char nameBuffer[geneLenght];
+    char nameBuffer[geneLenght+1];
 
     // Crear trie de altura 3 con raíz 'R'
     trieTree root = createTrieTree(3, 0, 'R', nameBuffer, childKeys);
@@ -29,9 +29,19 @@ int main(void)
     int seqLenght   = (int)strlen(sequence);
 
     genesRecognition(sequence, seqLenght, geneLenght, root);
-    
 
+    int longest = 0;
+    int shortest = -1;
+    findLongest(root, &longest);
+    findShortest(root, &shortest);
+    printf("List of longest lists\n");
+    showByLenght(root, longest);
+    printf("\nList of shortest lists\n");
+    showByLenght(root, shortest);
+    printf("\nAll found genes\n");
+    showAll(root);
 
+    freeMemory(root);
     // TODO: aquí más adelante deberías liberar el árbol (freeTrie(root))
 
     return 0;

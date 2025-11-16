@@ -23,67 +23,38 @@ trieTree createTrieTree(int treeSize, int currLevel, char letter, char* nameBuff
     node->l = letter;
     node->childNodes[0] = node->childNodes[1] = 
     node->childNodes[2] = node->childNodes[3] = NULL;
+    
     node->head = NULL;
     node->arrayLenght = -1;
+    node->geneName = NULL;
 
     if (currLevel < treeSize) {
         //Inner node creation
         for (int i = 0; i < 4; i++){
-            
             if (currLevel != 0) nameBuffer[currLevel-1] = letter; 
 
             node->childNodes[i] = 
             createTrieTree(treeSize, currLevel+1, childKeys[i], nameBuffer, childKeys);
         }
+
     } else {
         //Leaf creation
         nameBuffer[currLevel-1] = letter;
 
-        arrayNode head = malloc(sizeof(struct arrayNode));
-        if (head == NULL) {
-            printf("ERROR: Memory allocation for array head in leaf %c was not possible.\n", letter);
-        } else {
-
-            node->geneName = malloc(strlen(nameBuffer)+1);
-            if (node->geneName == NULL){
-                printf("ERROR: Memory allocation for gene name in leaf %c was not possible\n", letter);
-            } else {
-                
-                strcpy(node->geneName, nameBuffer);
-                head->index = -1;
-                head->next  = NULL;
-                node->head  = head;
-                node->arrayLenght = 0;
-
-                printf("Leaf {%s} created\n", node->geneName);
-            }            
-        }
-    }
-
-
-    return node;
-
-    /* Funcion creadora antigua
-    if (currLevel < treeSize) {
+        node->geneName = malloc(sizeof(char)*(treeSize+1));
+        if (node->geneName == NULL){
+            printf("ERROR: Memory allocation for gene name in leaf %c was not possible\n", letter);
         
-
-        int nextHeight = treeSize - 1;
-        char nameChildA[treeSize], nameChildC[treeSize], nameChildG[treeSize], nameChildC[treeSize];
-        strncpy(nameChildA, geneName);
-        node->A = createTrieTree(nextHeight, 'A');
-        node->C = createTrieTree(nextHeight, 'C');
-        node->G = createTrieTree(nextHeight, 'G');
-        node->T = createTrieTree(nextHeight, 'T');
-    }*/ 
+        } else {
+            nameBuffer[treeSize] = '\0';
+            strcpy(node->geneName, nameBuffer);
+            node->head = NULL;
+            node->arrayLenght = 0;
+        }            
+    }
+    return node;
 }
 
-//pero creo que entiend a que te refieres, es para despues recibir el puntero a la hoja, ok
-//Modifique el struct para que reciba root y *gene , por lo tanto
-//trieTree findGeneLeaf(trieTree root, const char *gene) 
-//Pero necesita los auxiliares
-//van por aparte
-
-//okei entiendo
 static trieTree getChildForChar(trieTree node , char c){
     if (node == NULL) return NULL;
     switch (c){
@@ -115,7 +86,7 @@ trieTree findGeneLeaf(trieTree root , const char *gene){
     return current;
 }
 
-//inserta newarray al final de la lista que comienza
+//inserta nuevo index a la hoja correspondiente
 void insertGene (trieTree root, const char *gene, int genePos){
     trieTree leaf = findGeneLeaf(root,gene);
     if(leaf == NULL){
@@ -134,26 +105,10 @@ void insertGene (trieTree root, const char *gene, int genePos){
         leaf->head = newArrayNode;
         leaf->arrayLenght = 1;
 
-        /*ArrayNode newUniqueGene = malloc(sizeof(struct arrayNode));
-        if (newUniqueGene == NULL){
-            printf("ERROR: no se pudo asignar memoria para añadir un nuevo gen único\n");
-            return;
-        }
-        newUniqueGene->geneName = gene;
-        newUniqueGene->next = NULL;
-        if (uniqueGeneArray == NULL){
-            uniqueGeneArray = newUniqueGene;
-        }
-        else{
-            insertArrayNode(uniqueGeneArray, newUniqueGene);
-        }*/
-
-
     }else {
         insertArrayNode(leaf->head, newArrayNode);
         (leaf->arrayLenght)++;
     }
-    printf("Gene[%s] Index[%d] inserted in Leaf[%s]Lenght[%d].\n", gene, genePos, leaf->geneName, leaf->arrayLenght);
 }
 
 void insertArrayNode(arrayNode currNode, arrayNode newNode){
@@ -164,37 +119,102 @@ void insertArrayNode(arrayNode currNode, arrayNode newNode){
     }
 }
 
-//Cont should be 0
-int arrayLenght(arrayNode head, int cont){
-    cont++;
-    if (head->next == NULL) return cont;
-    else {return arrayLenght(head->next, cont);}
-}
-
 //Recursive function to find longest array lenght (of indexes)
 void findLongest(trieTree node, int* longest){
     
-    if (node->head != NULL){
+    if (node->arrayLenght == -1){
+        for (int i = 0; i < 4; i++){
+            findLongest(node->childNodes[i], longest);
+        }
+        return;
+    } else {
         //Leaf found
         if (node->arrayLenght > (*longest)){
             //Longest updated
             (*longest) = node->arrayLenght;
         }
-        return;
-
-    } else {
-        for (int i = 0; i < 4; i++){
-            findLongest(node->childNodes[i], longest);
-        }
     }
     return;
 }
 
-void showArrayByLenght();
-//Toi sacando la basura
-//Echale un ojo al código pa que caches cómo vamos
-//Calquier pregunta me dice
-//nao yo linux, por?
-//por ahora solo puedo ejecutar yo
-//pero puedes descargar los archivos y correrlos en tu pc
-// voy tratar de arreglar los errores .....🦈
+void findShortest(trieTree node, int* shortest){
+    
+    if (node->arrayLenght == -1){
+        for (int i = 0; i < 4; i++){
+            findShortest(node->childNodes[i], shortest);
+        }
+        return;
+    } else {
+        //Leaf found
+        if (node->arrayLenght != 0){
+            if ((node->arrayLenght < (*shortest) || (*shortest) == -1)){
+                //Shortest updated
+                (*shortest) = node->arrayLenght;
+            }
+        }     
+    }
+    return;
+}
+
+void showArray (arrayNode arrNode){
+    printf(" %d", arrNode->index);
+
+    if (arrNode->next == NULL) return;
+    else {showArray(arrNode->next);}
+}
+
+void showByLenght(trieTree node, int lenght){
+    if (node->arrayLenght == -1){
+        for(int i = 0; i < 4; i++){
+            showByLenght(node->childNodes[i], lenght);
+        }
+    //Its a leaf
+    } else {
+        if (node->arrayLenght == lenght){
+            printf("[%s]:", node->geneName);
+            showArray(node->head);
+            printf("\n");
+        }
+    }    
+}
+
+void showAll(trieTree node){
+    if (node->arrayLenght == -1){
+        for (int i = 0; i < 4; i++){
+            showAll(node->childNodes[i]);
+        }
+    } else {
+        if (node->arrayLenght != 0){
+            printf("[%s]:", node->geneName);
+            showArray(node->head);
+            printf("\n");
+        }
+    }
+}
+
+void freeArray(arrayNode arrNode){
+    arrayNode curr = arrNode;
+    arrayNode next;
+
+    while (curr != NULL){
+        next = curr->next;
+        free(curr);
+        curr = next;
+    }
+    return;
+}
+
+void freeMemory(trieTree node){
+    if (node->arrayLenght != -1) {
+        free(node->geneName);
+        if (node->arrayLenght != 0){
+            freeArray(node->head);
+        }
+        
+    } else {
+        for (int i = 0; i < 4; i++){
+            freeMemory(node->childNodes[i]);
+        }
+    }
+    free(node);
+}

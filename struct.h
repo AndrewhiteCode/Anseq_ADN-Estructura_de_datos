@@ -35,7 +35,13 @@ trieTree findGeneLeaf(trieTree root, const char *gene);
 void genesRecognition(char *sequence, int seqLenght, int geneLenght, trieTree root);
 void insertArrayNode(arrayNode currNode, arrayNode newArrayNode);
 void insertGene(trieTree root, const char *gene, int genePos);
-void showMostRepetitions(trieTree root, arrayNode uniqueGeneArray);
+void findLongest(trieTree node, int* longest);
+void findShortest(trieTree node, int* shortest);
+void showArray (arrayNode arrNode);
+void showAll(trieTree node);
+void showByLenght(trieTree node, int longest);
+void freeArray(arrayNode arrNode);
+void freeMemory(trieTree node);
 
 
 #endif
