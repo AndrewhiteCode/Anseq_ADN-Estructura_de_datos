@@ -3,6 +3,14 @@
 #include <string.h>
 #include <stdlib.h>
 
+
+/*
+Hojas ahora almacenan el tamaño de su lista y 
+el nombre del gen que les corresponde. Se modificó 
+la estructura del nodo arbol para contener una 
+lista con las letras, en vez de tener 4 variables 
+separadas.
+*/
 int main(void) 
 {
 
