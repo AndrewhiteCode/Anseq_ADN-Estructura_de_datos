@@ -19,5 +19,3 @@ void genesRecognition(char *sequence, int seqLenght, int geneLenght, trieTree ro
         insertGene(root, gene, i);
     }
 }
-
-

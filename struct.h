@@ -1,7 +1,15 @@
+
 #ifndef STRUCT_H
 #define STRUCT_H
+#define ANSI_CYAN    "\x1b[36m"
+#define ANSI_YELLOW  "\x1b[33m"
+#define ANSI_GREEN   "\x1b[32m"
+#define ANSI_RESET   "\x1b[0m"
+#define LINE_BUFSIZE 256
+#define PROMPT       "bio> "
 
 #include <stdio.h>
+
 
 /* Tipos opacos */
 typedef struct arrayNode *arrayNode;
@@ -42,6 +50,7 @@ void showAll(trieTree node);
 void showByLenght(trieTree node, int longest);
 void freeArray(arrayNode arrNode);
 void freeMemory(trieTree node);
+void show_help(void);
 
 
 #endif

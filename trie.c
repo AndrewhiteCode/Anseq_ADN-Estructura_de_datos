@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "struct.h"
+#include <ctype.h>
 
 /* Crea un trie completo de altura treeSize.
  * letter es la letra que se guarda en este nodo.
@@ -217,4 +218,37 @@ void freeMemory(trieTree node){
         }
     }
     free(node);
+}
+void show_help() 
+{
+    printf(ANSI_CYAN "\n===== MENU DE COMANDOS =====\n\n" ANSI_RESET);
+    printf(ANSI_YELLOW "Comando" ANSI_RESET "               " ANSI_YELLOW "Descripcion\n" ANSI_RESET);
+    printf(ANSI_GREEN "bio start <n>" ANSI_RESET "          - Creación del árbol, siendo n el tamano de los genes que serán igual a la altura del árbol \n");
+    printf(ANSI_GREEN "bio read <ADN.TXT>" ANSI_RESET "     - Leer archivo de texto (Una sola linea). \n");
+    printf(ANSI_GREEN "bio search <G>" ANSI_RESET "         - Búsqueda manual de un Gen especifico junto con su posición \n");
+    printf(ANSI_GREEN "bio max " ANSI_RESET "               - Búsqueda de Gen con más repetición dentro de lista junto con sus posiciones \n");
+    printf(ANSI_GREEN "bio min " ANSI_RESET "               - Para el gen que aparece menos veces, se lista todos con sus respectivas posiciones\n");
+    printf(ANSI_GREEN "bio min " ANSI_RESET "               - Muestra el estado actual del cache\n");
+    printf(ANSI_GREEN "bio all " ANSI_RESET "               - Ver todos los genes que aparecen en la secuencia junto a sus posiciones)\n");
+    printf(ANSI_GREEN "bio exit " ANSI_RESET "              - Libera el cache y termina el programa\n");
+
+}
+void show_cadena(char *filename) 
+{
+    FILE *fp = fopen(filename, "r");
+    char c;
+
+    if (fp == NULL) {
+        printf("Error! en abrir el archivo'%s'\n", filename);
+        return;
+    }
+
+    printf(ANSI_YELLOW"Cadena genetica de  '%s' \n\n", filename);
+    while ((c = fgetc(fp)) != EOF) 
+    {
+        printf("%c", c);
+    }
+    
+    printf("\n");
+    fclose(fp);
 }
