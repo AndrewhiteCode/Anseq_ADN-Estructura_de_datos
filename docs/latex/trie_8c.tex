@@ -1,0 +1,192 @@
+\doxysection{trie.\+c File Reference}
+\hypertarget{trie_8c}{}\label{trie_8c}\index{trie.c@{trie.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}struct.\+h"{}}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} \mbox{\hyperlink{trie_8c_a7b6a1513d3022e5cf39bf130dd5fdc04}{create\+Trie\+Tree}} (int tree\+Size, int curr\+Level, char letter, char \texorpdfstring{$\ast$}{*}name\+Buffer, char \texorpdfstring{$\ast$}{*}child\+Keys)
+\begin{DoxyCompactList}\small\item\em Crea un trie completo de altura tree\+Size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} \mbox{\hyperlink{trie_8c_a6fb506bd66b02587b147d2e56af5fe2f}{find\+Gene\+Leaf}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} root, const char \texorpdfstring{$\ast$}{*}gene)
+\begin{DoxyCompactList}\small\item\em Busca la hoja correspondiente a un gen en el trie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trie_8c_af0385ba1ab35320d37c5f4ff12b31d93}{insert\+Gene}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} root, const char \texorpdfstring{$\ast$}{*}gene, int gene\+Pos)
+\begin{DoxyCompactList}\small\item\em Inserta un índice para un gen en el trie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trie_8c_aad1f0714eb06317bf85eba45f0b36b98}{insert\+Array\+Node}} (\mbox{\hyperlink{structarray_node}{array\+Node}} curr\+Node, \mbox{\hyperlink{structarray_node}{array\+Node}} new\+Node)
+\item 
+void \mbox{\hyperlink{trie_8c_aec5091d4c1a3c29ec218ebbdbdfa6f8a}{find\+Longest}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node, int \texorpdfstring{$\ast$}{*}longest)
+\item 
+void \mbox{\hyperlink{trie_8c_a9bb8e58df78fcef3d71a7991f9e3cd0a}{find\+Shortest}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node, int \texorpdfstring{$\ast$}{*}shortest)
+\item 
+void \mbox{\hyperlink{trie_8c_af9cac79e2f1b10a5a05cfce7b5222d27}{show\+Array}} (\mbox{\hyperlink{structarray_node}{array\+Node}} arr\+Node)
+\item 
+void \mbox{\hyperlink{trie_8c_a06b48985e31a9f1c3b0b637350d4a07c}{show\+By\+Lenght}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node, int lenght)
+\item 
+void \mbox{\hyperlink{trie_8c_a59a773064c595c959409b026ef162013}{show\+All}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node)
+\item 
+void \mbox{\hyperlink{trie_8c_ab2d8e1477fd73e4c3b2dec865a6cc86f}{free\+Array}} (\mbox{\hyperlink{structarray_node}{array\+Node}} arr\+Node)
+\item 
+void \mbox{\hyperlink{trie_8c_aee1e0732f27562e09cef3ca808ddf492}{free\+Memory}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node)
+\item 
+void \mbox{\hyperlink{trie_8c_ac29c297ae32acdb2172e926d5f144681}{show\+\_\+help}} ()
+\item 
+void \mbox{\hyperlink{trie_8c_adaf35722493b084775293deb6b2f0b30}{show\+\_\+cadena}} (char \texorpdfstring{$\ast$}{*}filename)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{trie_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{trie_8c_a7b6a1513d3022e5cf39bf130dd5fdc04}\index{trie.c@{trie.c}!createTrieTree@{createTrieTree}}
+\index{createTrieTree@{createTrieTree}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{createTrieTree()}{createTrieTree()}}
+{\footnotesize\ttfamily \label{trie_8c_a7b6a1513d3022e5cf39bf130dd5fdc04} 
+\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} create\+Trie\+Tree (\begin{DoxyParamCaption}\item[{int}]{tree\+Size}{, }\item[{int}]{curr\+Level}{, }\item[{char}]{letter}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{name\+Buffer}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{child\+Keys}{}\end{DoxyParamCaption})}
+
+
+
+Crea un trie completo de altura tree\+Size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree\+Size} & Altura máxima del trie. \\
+\hline
+{\em curr\+Level} & Nivel actual del trie (inicia en 0). \\
+\hline
+{\em letter} & Letra del nodo actual. \\
+\hline
+{\em name\+Buffer} & Buffer para almacenar el nombre del gen. \\
+\hline
+{\em child\+Keys} & Claves de los hijos (A, C, G, T). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nodo raíz del trie creado. 
+\end{DoxyReturn}
+Crea un trie completo de altura tree\+Size. 
+\begin{DoxyParams}{Parameters}
+{\em tree\+Size} & Altura máxima del trie. \\
+\hline
+{\em curr\+Level} & Nivel actual del trie (inicia en 0). \\
+\hline
+{\em letter} & Letra del nodo actual. \\
+\hline
+{\em name\+Buffer} & Buffer para almacenar el nombre del gen. \\
+\hline
+{\em child\+Keys} & Claves de los hijos (A, C, G, T). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nodo raíz del trie creado.
+\end{DoxyReturn}
+\Hypertarget{trie_8c_a6fb506bd66b02587b147d2e56af5fe2f}\index{trie.c@{trie.c}!findGeneLeaf@{findGeneLeaf}}
+\index{findGeneLeaf@{findGeneLeaf}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{findGeneLeaf()}{findGeneLeaf()}}
+{\footnotesize\ttfamily \label{trie_8c_a6fb506bd66b02587b147d2e56af5fe2f} 
+\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} find\+Gene\+Leaf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{gene}{}\end{DoxyParamCaption})}
+
+
+
+Busca la hoja correspondiente a un gen en el trie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Nodo raíz del trie. \\
+\hline
+{\em gene} & Gen a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nodo hoja donde se encuentra el gen, o NULL si no se encuentra. 
+\end{DoxyReturn}
+\Hypertarget{trie_8c_aec5091d4c1a3c29ec218ebbdbdfa6f8a}\index{trie.c@{trie.c}!findLongest@{findLongest}}
+\index{findLongest@{findLongest}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{findLongest()}{findLongest()}}
+{\footnotesize\ttfamily \label{trie_8c_aec5091d4c1a3c29ec218ebbdbdfa6f8a} 
+void find\+Longest (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{longest}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trie_8c_a9bb8e58df78fcef3d71a7991f9e3cd0a}\index{trie.c@{trie.c}!findShortest@{findShortest}}
+\index{findShortest@{findShortest}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{findShortest()}{findShortest()}}
+{\footnotesize\ttfamily \label{trie_8c_a9bb8e58df78fcef3d71a7991f9e3cd0a} 
+void find\+Shortest (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{shortest}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trie_8c_ab2d8e1477fd73e4c3b2dec865a6cc86f}\index{trie.c@{trie.c}!freeArray@{freeArray}}
+\index{freeArray@{freeArray}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{freeArray()}{freeArray()}}
+{\footnotesize\ttfamily \label{trie_8c_ab2d8e1477fd73e4c3b2dec865a6cc86f} 
+void free\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray_node}{array\+Node}}}]{arr\+Node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trie_8c_aee1e0732f27562e09cef3ca808ddf492}\index{trie.c@{trie.c}!freeMemory@{freeMemory}}
+\index{freeMemory@{freeMemory}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{freeMemory()}{freeMemory()}}
+{\footnotesize\ttfamily \label{trie_8c_aee1e0732f27562e09cef3ca808ddf492} 
+void free\+Memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trie_8c_aad1f0714eb06317bf85eba45f0b36b98}\index{trie.c@{trie.c}!insertArrayNode@{insertArrayNode}}
+\index{insertArrayNode@{insertArrayNode}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{insertArrayNode()}{insertArrayNode()}}
+{\footnotesize\ttfamily \label{trie_8c_aad1f0714eb06317bf85eba45f0b36b98} 
+void insert\+Array\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray_node}{array\+Node}}}]{curr\+Node}{, }\item[{\mbox{\hyperlink{structarray_node}{array\+Node}}}]{new\+Node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trie_8c_af0385ba1ab35320d37c5f4ff12b31d93}\index{trie.c@{trie.c}!insertGene@{insertGene}}
+\index{insertGene@{insertGene}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{insertGene()}{insertGene()}}
+{\footnotesize\ttfamily \label{trie_8c_af0385ba1ab35320d37c5f4ff12b31d93} 
+void insert\+Gene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{gene}{, }\item[{int}]{gene\+Pos}{}\end{DoxyParamCaption})}
+
+
+
+Inserta un índice para un gen en el trie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Nodo raíz del trie. \\
+\hline
+{\em gene} & Gen a insertar. \\
+\hline
+{\em gene\+Pos} & Posición del gen en la secuencia. \\
+\hline
+\end{DoxyParams}
+Busca la hoja correspondiente a un gen en el trie. 
+\begin{DoxyParams}{Parameters}
+{\em root} & Nodo raíz del trie. \\
+\hline
+{\em gene} & Gen a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nodo hoja donde se encuentra el gen, o NULL si no se encuentra.
+\end{DoxyReturn}
+\Hypertarget{trie_8c_adaf35722493b084775293deb6b2f0b30}\index{trie.c@{trie.c}!show\_cadena@{show\_cadena}}
+\index{show\_cadena@{show\_cadena}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{show\_cadena()}{show\_cadena()}}
+{\footnotesize\ttfamily \label{trie_8c_adaf35722493b084775293deb6b2f0b30} 
+void show\+\_\+cadena (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{filename}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trie_8c_ac29c297ae32acdb2172e926d5f144681}\index{trie.c@{trie.c}!show\_help@{show\_help}}
+\index{show\_help@{show\_help}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{show\_help()}{show\_help()}}
+{\footnotesize\ttfamily \label{trie_8c_ac29c297ae32acdb2172e926d5f144681} 
+void show\+\_\+help (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trie_8c_a59a773064c595c959409b026ef162013}\index{trie.c@{trie.c}!showAll@{showAll}}
+\index{showAll@{showAll}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{showAll()}{showAll()}}
+{\footnotesize\ttfamily \label{trie_8c_a59a773064c595c959409b026ef162013} 
+void show\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trie_8c_af9cac79e2f1b10a5a05cfce7b5222d27}\index{trie.c@{trie.c}!showArray@{showArray}}
+\index{showArray@{showArray}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{showArray()}{showArray()}}
+{\footnotesize\ttfamily \label{trie_8c_af9cac79e2f1b10a5a05cfce7b5222d27} 
+void show\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray_node}{array\+Node}}}]{arr\+Node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trie_8c_a06b48985e31a9f1c3b0b637350d4a07c}\index{trie.c@{trie.c}!showByLenght@{showByLenght}}
+\index{showByLenght@{showByLenght}!trie.c@{trie.c}}
+\doxysubsubsection{\texorpdfstring{showByLenght()}{showByLenght()}}
+{\footnotesize\ttfamily \label{trie_8c_a06b48985e31a9f1c3b0b637350d4a07c} 
+void show\+By\+Lenght (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{, }\item[{int}]{lenght}{}\end{DoxyParamCaption})}
+

@@ -1,0 +1,73 @@
+\doxysection{main.\+c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{main.c@{main.c}}
+{\ttfamily \#include "{}struct.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8c_a7e370132378284b9bd2fc61970e8f64a}{LINE\+\_\+\+BUFSIZE}}~1024
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8c_a624d705b2ac62c151d952a518475eb9a}{skip\+\_\+spaces}} (char \texorpdfstring{$\ast$}{*}s)
+\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{main_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{main_8c_a7e370132378284b9bd2fc61970e8f64a}\index{main.c@{main.c}!LINE\_BUFSIZE@{LINE\_BUFSIZE}}
+\index{LINE\_BUFSIZE@{LINE\_BUFSIZE}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{LINE\_BUFSIZE}{LINE\_BUFSIZE}}
+{\footnotesize\ttfamily \label{main_8c_a7e370132378284b9bd2fc61970e8f64a} 
+\#define LINE\+\_\+\+BUFSIZE~1024}
+
+
+
+\label{doc-func-members}
+\Hypertarget{main_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+int main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Crea un trie completo de altura tree\+Size. 
+\begin{DoxyParams}{Parameters}
+{\em tree\+Size} & Altura máxima del trie. \\
+\hline
+{\em curr\+Level} & Nivel actual del trie (inicia en 0). \\
+\hline
+{\em letter} & Letra del nodo actual. \\
+\hline
+{\em name\+Buffer} & Buffer para almacenar el nombre del gen. \\
+\hline
+{\em child\+Keys} & Claves de los hijos (A, C, G, T). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nodo raíz del trie creado.
+\end{DoxyReturn}
+Reconoce los genes en una secuencia de ADN y los inserta en el trie. 
+\begin{DoxyParams}{Parameters}
+{\em sequence} & Secuencia de ADN a analizar. \\
+\hline
+{\em seq\+Lenght} & Longitud de la secuencia. \\
+\hline
+{\em gene\+Lenght} & Longitud del gen a reconocer. \\
+\hline
+{\em root} & Nodo raíz del trie donde se insertan los genes.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8c_a624d705b2ac62c151d952a518475eb9a}\index{main.c@{main.c}!skip\_spaces@{skip\_spaces}}
+\index{skip\_spaces@{skip\_spaces}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{skip\_spaces()}{skip\_spaces()}}
+{\footnotesize\ttfamily \label{main_8c_a624d705b2ac62c151d952a518475eb9a} 
+char \texorpdfstring{$\ast$}{*} skip\+\_\+spaces (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})}
+

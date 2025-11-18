@@ -1,0 +1,27 @@
+var struct_8h =
+[
+    [ "arrayNode", "structarray_node.html", "structarray_node" ],
+    [ "tTreeNode", "structt_tree_node.html", "structt_tree_node" ],
+    [ "ANSI_CYAN", "struct_8h.html#a8e74e295b54795a32a16ea744f6aed5e", null ],
+    [ "ANSI_GREEN", "struct_8h.html#ad050fd71ced44460a0c723a1715c40e5", null ],
+    [ "ANSI_RESET", "struct_8h.html#af77a445894f2f750d43cf2182cd29e55", null ],
+    [ "ANSI_YELLOW", "struct_8h.html#af6e8b5c7b35e8bff4c581efd8019c798", null ],
+    [ "LINE_BUFSIZE", "struct_8h.html#a7e370132378284b9bd2fc61970e8f64a", null ],
+    [ "PROMPT", "struct_8h.html#accdbea14ea06c15e271784368bd993e8", null ],
+    [ "arrayNode", "struct_8h.html#ae9ad0a74c485918cd01f7a119c58595d", null ],
+    [ "treeNodePos", "struct_8h.html#a0f2568ad666623adf2e401c95bfffb3b", null ],
+    [ "trieTree", "struct_8h.html#ac57ff49e7fe863f40afb52dae102ac40", null ],
+    [ "createTrieTree", "struct_8h.html#a7b6a1513d3022e5cf39bf130dd5fdc04", null ],
+    [ "findGeneLeaf", "struct_8h.html#a6fb506bd66b02587b147d2e56af5fe2f", null ],
+    [ "findLongest", "struct_8h.html#aec5091d4c1a3c29ec218ebbdbdfa6f8a", null ],
+    [ "findShortest", "struct_8h.html#a9bb8e58df78fcef3d71a7991f9e3cd0a", null ],
+    [ "freeArray", "struct_8h.html#ab2d8e1477fd73e4c3b2dec865a6cc86f", null ],
+    [ "freeMemory", "struct_8h.html#aee1e0732f27562e09cef3ca808ddf492", null ],
+    [ "genesRecognition", "struct_8h.html#a46f5e61c4eb4b2dc1059e79c8bbef1e7", null ],
+    [ "insertArrayNode", "struct_8h.html#a41469834bb319f19362aa1b33b347e84", null ],
+    [ "insertGene", "struct_8h.html#af0385ba1ab35320d37c5f4ff12b31d93", null ],
+    [ "show_help", "struct_8h.html#af25820ed386a66a0d6bb4dcdd2204704", null ],
+    [ "showAll", "struct_8h.html#a59a773064c595c959409b026ef162013", null ],
+    [ "showArray", "struct_8h.html#af9cac79e2f1b10a5a05cfce7b5222d27", null ],
+    [ "showByLenght", "struct_8h.html#ad53d4890d38249f50fd0208021b614b0", null ]
+];

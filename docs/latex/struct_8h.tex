@@ -1,0 +1,307 @@
+\doxysection{struct.\+h File Reference}
+\hypertarget{struct_8h}{}\label{struct_8h}\index{struct.h@{struct.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structarray_node}{array\+Node}}
+\item 
+struct \mbox{\hyperlink{structt_tree_node}{t\+Tree\+Node}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{struct_8h_a8e74e295b54795a32a16ea744f6aed5e}{ANSI\+\_\+\+CYAN}}~"{}\textbackslash{}x1b\mbox{[}36m"{}
+\item 
+\#define \mbox{\hyperlink{struct_8h_af6e8b5c7b35e8bff4c581efd8019c798}{ANSI\+\_\+\+YELLOW}}~"{}\textbackslash{}x1b\mbox{[}33m"{}
+\item 
+\#define \mbox{\hyperlink{struct_8h_ad050fd71ced44460a0c723a1715c40e5}{ANSI\+\_\+\+GREEN}}~"{}\textbackslash{}x1b\mbox{[}32m"{}
+\item 
+\#define \mbox{\hyperlink{struct_8h_af77a445894f2f750d43cf2182cd29e55}{ANSI\+\_\+\+RESET}}~"{}\textbackslash{}x1b\mbox{[}0m"{}
+\item 
+\#define \mbox{\hyperlink{struct_8h_a7e370132378284b9bd2fc61970e8f64a}{LINE\+\_\+\+BUFSIZE}}~256
+\item 
+\#define \mbox{\hyperlink{struct_8h_accdbea14ea06c15e271784368bd993e8}{PROMPT}}~"{}bio$>$ "{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct array\+Node \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_8h_ae9ad0a74c485918cd01f7a119c58595d}{array\+Node}}
+\item 
+typedef struct \mbox{\hyperlink{structt_tree_node}{t\+Tree\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}
+\item 
+typedef struct \mbox{\hyperlink{structt_tree_node}{t\+Tree\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_8h_a0f2568ad666623adf2e401c95bfffb3b}{tree\+Node\+Pos}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} \mbox{\hyperlink{struct_8h_a7b6a1513d3022e5cf39bf130dd5fdc04}{create\+Trie\+Tree}} (int tree\+Size, int curr\+Level, char letter, char \texorpdfstring{$\ast$}{*}name\+Buffer, char \texorpdfstring{$\ast$}{*}child\+Keys)
+\begin{DoxyCompactList}\small\item\em Crea un trie completo de altura tree\+Size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} \mbox{\hyperlink{struct_8h_a6fb506bd66b02587b147d2e56af5fe2f}{find\+Gene\+Leaf}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} root, const char \texorpdfstring{$\ast$}{*}gene)
+\begin{DoxyCompactList}\small\item\em Busca la hoja correspondiente a un gen en el trie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_8h_a46f5e61c4eb4b2dc1059e79c8bbef1e7}{genes\+Recognition}} (char \texorpdfstring{$\ast$}{*}sequence, int seq\+Lenght, int gene\+Lenght, \mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} root)
+\begin{DoxyCompactList}\small\item\em Reconoce los genes en una secuencia de ADN y los inserta en el trie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_8h_a41469834bb319f19362aa1b33b347e84}{insert\+Array\+Node}} (\mbox{\hyperlink{structarray_node}{array\+Node}} curr\+Node, \mbox{\hyperlink{structarray_node}{array\+Node}} new\+Array\+Node)
+\item 
+void \mbox{\hyperlink{struct_8h_af0385ba1ab35320d37c5f4ff12b31d93}{insert\+Gene}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} root, const char \texorpdfstring{$\ast$}{*}gene, int gene\+Pos)
+\begin{DoxyCompactList}\small\item\em Inserta un índice para un gen en el trie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_8h_aec5091d4c1a3c29ec218ebbdbdfa6f8a}{find\+Longest}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node, int \texorpdfstring{$\ast$}{*}longest)
+\item 
+void \mbox{\hyperlink{struct_8h_a9bb8e58df78fcef3d71a7991f9e3cd0a}{find\+Shortest}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node, int \texorpdfstring{$\ast$}{*}shortest)
+\item 
+void \mbox{\hyperlink{struct_8h_af9cac79e2f1b10a5a05cfce7b5222d27}{show\+Array}} (\mbox{\hyperlink{structarray_node}{array\+Node}} arr\+Node)
+\item 
+void \mbox{\hyperlink{struct_8h_a59a773064c595c959409b026ef162013}{show\+All}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node)
+\item 
+void \mbox{\hyperlink{struct_8h_ad53d4890d38249f50fd0208021b614b0}{show\+By\+Lenght}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node, int longest)
+\item 
+void \mbox{\hyperlink{struct_8h_ab2d8e1477fd73e4c3b2dec865a6cc86f}{free\+Array}} (\mbox{\hyperlink{structarray_node}{array\+Node}} arr\+Node)
+\item 
+void \mbox{\hyperlink{struct_8h_aee1e0732f27562e09cef3ca808ddf492}{free\+Memory}} (\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} node)
+\item 
+void \mbox{\hyperlink{struct_8h_af25820ed386a66a0d6bb4dcdd2204704}{show\+\_\+help}} (void)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{struct_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{struct_8h_a8e74e295b54795a32a16ea744f6aed5e}\index{struct.h@{struct.h}!ANSI\_CYAN@{ANSI\_CYAN}}
+\index{ANSI\_CYAN@{ANSI\_CYAN}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{ANSI\_CYAN}{ANSI\_CYAN}}
+{\footnotesize\ttfamily \label{struct_8h_a8e74e295b54795a32a16ea744f6aed5e} 
+\#define ANSI\+\_\+\+CYAN~"{}\textbackslash{}x1b\mbox{[}36m"{}}
+
+\Hypertarget{struct_8h_ad050fd71ced44460a0c723a1715c40e5}\index{struct.h@{struct.h}!ANSI\_GREEN@{ANSI\_GREEN}}
+\index{ANSI\_GREEN@{ANSI\_GREEN}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{ANSI\_GREEN}{ANSI\_GREEN}}
+{\footnotesize\ttfamily \label{struct_8h_ad050fd71ced44460a0c723a1715c40e5} 
+\#define ANSI\+\_\+\+GREEN~"{}\textbackslash{}x1b\mbox{[}32m"{}}
+
+\Hypertarget{struct_8h_af77a445894f2f750d43cf2182cd29e55}\index{struct.h@{struct.h}!ANSI\_RESET@{ANSI\_RESET}}
+\index{ANSI\_RESET@{ANSI\_RESET}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{ANSI\_RESET}{ANSI\_RESET}}
+{\footnotesize\ttfamily \label{struct_8h_af77a445894f2f750d43cf2182cd29e55} 
+\#define ANSI\+\_\+\+RESET~"{}\textbackslash{}x1b\mbox{[}0m"{}}
+
+\Hypertarget{struct_8h_af6e8b5c7b35e8bff4c581efd8019c798}\index{struct.h@{struct.h}!ANSI\_YELLOW@{ANSI\_YELLOW}}
+\index{ANSI\_YELLOW@{ANSI\_YELLOW}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{ANSI\_YELLOW}{ANSI\_YELLOW}}
+{\footnotesize\ttfamily \label{struct_8h_af6e8b5c7b35e8bff4c581efd8019c798} 
+\#define ANSI\+\_\+\+YELLOW~"{}\textbackslash{}x1b\mbox{[}33m"{}}
+
+\Hypertarget{struct_8h_a7e370132378284b9bd2fc61970e8f64a}\index{struct.h@{struct.h}!LINE\_BUFSIZE@{LINE\_BUFSIZE}}
+\index{LINE\_BUFSIZE@{LINE\_BUFSIZE}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{LINE\_BUFSIZE}{LINE\_BUFSIZE}}
+{\footnotesize\ttfamily \label{struct_8h_a7e370132378284b9bd2fc61970e8f64a} 
+\#define LINE\+\_\+\+BUFSIZE~256}
+
+\Hypertarget{struct_8h_accdbea14ea06c15e271784368bd993e8}\index{struct.h@{struct.h}!PROMPT@{PROMPT}}
+\index{PROMPT@{PROMPT}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{PROMPT}{PROMPT}}
+{\footnotesize\ttfamily \label{struct_8h_accdbea14ea06c15e271784368bd993e8} 
+\#define PROMPT~"{}bio$>$ "{}}
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{struct_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{struct_8h_ae9ad0a74c485918cd01f7a119c58595d}\index{struct.h@{struct.h}!arrayNode@{arrayNode}}
+\index{arrayNode@{arrayNode}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{arrayNode}{arrayNode}}
+{\footnotesize\ttfamily \label{struct_8h_ae9ad0a74c485918cd01f7a119c58595d} 
+typedef struct array\+Node\texorpdfstring{$\ast$}{*} array\+Node}
+
+\Hypertarget{struct_8h_a0f2568ad666623adf2e401c95bfffb3b}\index{struct.h@{struct.h}!treeNodePos@{treeNodePos}}
+\index{treeNodePos@{treeNodePos}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{treeNodePos}{treeNodePos}}
+{\footnotesize\ttfamily \label{struct_8h_a0f2568ad666623adf2e401c95bfffb3b} 
+typedef struct \mbox{\hyperlink{structt_tree_node}{t\+Tree\+Node}}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_8h_a0f2568ad666623adf2e401c95bfffb3b}{tree\+Node\+Pos}}}
+
+\Hypertarget{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}\index{struct.h@{struct.h}!trieTree@{trieTree}}
+\index{trieTree@{trieTree}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{trieTree}{trieTree}}
+{\footnotesize\ttfamily \label{struct_8h_ac57ff49e7fe863f40afb52dae102ac40} 
+typedef struct \mbox{\hyperlink{structt_tree_node}{t\+Tree\+Node}}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{struct_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{struct_8h_a7b6a1513d3022e5cf39bf130dd5fdc04}\index{struct.h@{struct.h}!createTrieTree@{createTrieTree}}
+\index{createTrieTree@{createTrieTree}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{createTrieTree()}{createTrieTree()}}
+{\footnotesize\ttfamily \label{struct_8h_a7b6a1513d3022e5cf39bf130dd5fdc04} 
+\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} create\+Trie\+Tree (\begin{DoxyParamCaption}\item[{int}]{tree\+Size}{, }\item[{int}]{curr\+Level}{, }\item[{char}]{letter}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{name\+Buffer}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{child\+Keys}{}\end{DoxyParamCaption})}
+
+
+
+Crea un trie completo de altura tree\+Size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree\+Size} & Altura máxima del trie. \\
+\hline
+{\em curr\+Level} & Nivel actual del trie (inicia en 0). \\
+\hline
+{\em letter} & Letra del nodo actual. \\
+\hline
+{\em name\+Buffer} & Buffer para almacenar el nombre del gen. \\
+\hline
+{\em child\+Keys} & Claves de los hijos (A, C, G, T). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nodo raíz del trie creado. 
+\end{DoxyReturn}
+Crea un trie completo de altura tree\+Size. 
+\begin{DoxyParams}{Parameters}
+{\em tree\+Size} & Altura máxima del trie. \\
+\hline
+{\em curr\+Level} & Nivel actual del trie (inicia en 0). \\
+\hline
+{\em letter} & Letra del nodo actual. \\
+\hline
+{\em name\+Buffer} & Buffer para almacenar el nombre del gen. \\
+\hline
+{\em child\+Keys} & Claves de los hijos (A, C, G, T). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nodo raíz del trie creado.
+\end{DoxyReturn}
+\Hypertarget{struct_8h_a6fb506bd66b02587b147d2e56af5fe2f}\index{struct.h@{struct.h}!findGeneLeaf@{findGeneLeaf}}
+\index{findGeneLeaf@{findGeneLeaf}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{findGeneLeaf()}{findGeneLeaf()}}
+{\footnotesize\ttfamily \label{struct_8h_a6fb506bd66b02587b147d2e56af5fe2f} 
+\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}} find\+Gene\+Leaf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{gene}{}\end{DoxyParamCaption})}
+
+
+
+Busca la hoja correspondiente a un gen en el trie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Nodo raíz del trie. \\
+\hline
+{\em gene} & Gen a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nodo hoja donde se encuentra el gen, o NULL si no se encuentra. 
+\end{DoxyReturn}
+\Hypertarget{struct_8h_aec5091d4c1a3c29ec218ebbdbdfa6f8a}\index{struct.h@{struct.h}!findLongest@{findLongest}}
+\index{findLongest@{findLongest}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{findLongest()}{findLongest()}}
+{\footnotesize\ttfamily \label{struct_8h_aec5091d4c1a3c29ec218ebbdbdfa6f8a} 
+void find\+Longest (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{longest}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_8h_a9bb8e58df78fcef3d71a7991f9e3cd0a}\index{struct.h@{struct.h}!findShortest@{findShortest}}
+\index{findShortest@{findShortest}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{findShortest()}{findShortest()}}
+{\footnotesize\ttfamily \label{struct_8h_a9bb8e58df78fcef3d71a7991f9e3cd0a} 
+void find\+Shortest (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{shortest}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_8h_ab2d8e1477fd73e4c3b2dec865a6cc86f}\index{struct.h@{struct.h}!freeArray@{freeArray}}
+\index{freeArray@{freeArray}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{freeArray()}{freeArray()}}
+{\footnotesize\ttfamily \label{struct_8h_ab2d8e1477fd73e4c3b2dec865a6cc86f} 
+void free\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray_node}{array\+Node}}}]{arr\+Node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_8h_aee1e0732f27562e09cef3ca808ddf492}\index{struct.h@{struct.h}!freeMemory@{freeMemory}}
+\index{freeMemory@{freeMemory}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{freeMemory()}{freeMemory()}}
+{\footnotesize\ttfamily \label{struct_8h_aee1e0732f27562e09cef3ca808ddf492} 
+void free\+Memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_8h_a46f5e61c4eb4b2dc1059e79c8bbef1e7}\index{struct.h@{struct.h}!genesRecognition@{genesRecognition}}
+\index{genesRecognition@{genesRecognition}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{genesRecognition()}{genesRecognition()}}
+{\footnotesize\ttfamily \label{struct_8h_a46f5e61c4eb4b2dc1059e79c8bbef1e7} 
+void genes\+Recognition (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{sequence}{, }\item[{int}]{seq\+Lenght}{, }\item[{int}]{gene\+Lenght}{, }\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{root}{}\end{DoxyParamCaption})}
+
+
+
+Reconoce los genes en una secuencia de ADN y los inserta en el trie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sequence} & Secuencia de ADN a analizar. \\
+\hline
+{\em seq\+Lenght} & Longitud de la secuencia. \\
+\hline
+{\em gene\+Lenght} & Longitud del gen a reconocer. \\
+\hline
+{\em root} & Nodo raíz del trie donde se insertan los genes. \\
+\hline
+\end{DoxyParams}
+Inserta un índice para un gen en el trie. 
+\begin{DoxyParams}{Parameters}
+{\em root} & Nodo raíz del trie. \\
+\hline
+{\em gene} & Gen a insertar. \\
+\hline
+{\em gene\+Pos} & Posición del gen en la secuencia.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_8h_a41469834bb319f19362aa1b33b347e84}\index{struct.h@{struct.h}!insertArrayNode@{insertArrayNode}}
+\index{insertArrayNode@{insertArrayNode}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{insertArrayNode()}{insertArrayNode()}}
+{\footnotesize\ttfamily \label{struct_8h_a41469834bb319f19362aa1b33b347e84} 
+void insert\+Array\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray_node}{array\+Node}}}]{curr\+Node}{, }\item[{\mbox{\hyperlink{structarray_node}{array\+Node}}}]{new\+Array\+Node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_8h_af0385ba1ab35320d37c5f4ff12b31d93}\index{struct.h@{struct.h}!insertGene@{insertGene}}
+\index{insertGene@{insertGene}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{insertGene()}{insertGene()}}
+{\footnotesize\ttfamily \label{struct_8h_af0385ba1ab35320d37c5f4ff12b31d93} 
+void insert\+Gene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{gene}{, }\item[{int}]{gene\+Pos}{}\end{DoxyParamCaption})}
+
+
+
+Inserta un índice para un gen en el trie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Nodo raíz del trie. \\
+\hline
+{\em gene} & Gen a insertar. \\
+\hline
+{\em gene\+Pos} & Posición del gen en la secuencia. \\
+\hline
+\end{DoxyParams}
+Busca la hoja correspondiente a un gen en el trie. 
+\begin{DoxyParams}{Parameters}
+{\em root} & Nodo raíz del trie. \\
+\hline
+{\em gene} & Gen a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nodo hoja donde se encuentra el gen, o NULL si no se encuentra.
+\end{DoxyReturn}
+\Hypertarget{struct_8h_af25820ed386a66a0d6bb4dcdd2204704}\index{struct.h@{struct.h}!show\_help@{show\_help}}
+\index{show\_help@{show\_help}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{show\_help()}{show\_help()}}
+{\footnotesize\ttfamily \label{struct_8h_af25820ed386a66a0d6bb4dcdd2204704} 
+void show\+\_\+help (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_8h_a59a773064c595c959409b026ef162013}\index{struct.h@{struct.h}!showAll@{showAll}}
+\index{showAll@{showAll}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{showAll()}{showAll()}}
+{\footnotesize\ttfamily \label{struct_8h_a59a773064c595c959409b026ef162013} 
+void show\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_8h_af9cac79e2f1b10a5a05cfce7b5222d27}\index{struct.h@{struct.h}!showArray@{showArray}}
+\index{showArray@{showArray}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{showArray()}{showArray()}}
+{\footnotesize\ttfamily \label{struct_8h_af9cac79e2f1b10a5a05cfce7b5222d27} 
+void show\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray_node}{array\+Node}}}]{arr\+Node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_8h_ad53d4890d38249f50fd0208021b614b0}\index{struct.h@{struct.h}!showByLenght@{showByLenght}}
+\index{showByLenght@{showByLenght}!struct.h@{struct.h}}
+\doxysubsubsection{\texorpdfstring{showByLenght()}{showByLenght()}}
+{\footnotesize\ttfamily \label{struct_8h_ad53d4890d38249f50fd0208021b614b0} 
+void show\+By\+Lenght (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_8h_ac57ff49e7fe863f40afb52dae102ac40}{trie\+Tree}}}]{node}{, }\item[{int}]{longest}{}\end{DoxyParamCaption})}
+
