@@ -1,6 +1,6 @@
-# Anseq_ADN – Estructura de Datos 2
+# Anseq_ADN – Estructura de Datos
 
-Proyecto en C para la asignatura **Estructura de Datos 2**, cuyo objetivo es
+Proyecto en C para la asignatura **Estructura de Datos **, cuyo objetivo es
 **reconocer genes en una secuencia de ADN** utilizando un **árbol Trie 4-ario**
 y almacenar las posiciones donde aparece cada gen.
 
