@@ -1,4 +1,5 @@
 
+
 #include "struct.h"
 #include <stdio.h>
 #include <string.h>
@@ -156,6 +157,38 @@ int main(void)
             show_cadena(filename);
             printf("\n");
 
+        }
+        if (strncmp(cmd, "bio search", 10) == 0 || strncmp(cmd, "search", 6) == 0) 
+        {
+            if (root == NULL) {
+                fprintf(stderr, "Error!! ejecuta start <n>\n");
+                continue;
+            }
+
+            char *geneToFind;
+            // Calcular inicio del texto saltando el comando
+            if (strncmp(cmd, "bio search", 10) == 0) geneToFind = skip_spaces(cmd + 10);
+            else geneToFind = skip_spaces(cmd + 6);
+
+            if (strlen(geneToFind) != geneLenght) {
+                printf("Error: El gen buscado debe tener %d letras (escribiste %ld).\n", geneLenght, strlen(geneToFind));
+                continue;
+            }
+
+            // Usar la función de búsqueda del Trie
+            trieTree leaf = findGeneLeaf(root, geneToFind); 
+
+            if (leaf != NULL && leaf->arrayLenght > 0) {
+                printf("\nResultado\n");
+                printf("Gen: [%s]\n", leaf->geneName);
+                printf("Apariciones: %d\n", leaf->arrayLenght);
+                printf("posiciones: ");
+                showArray(leaf->head); 
+                printf("\n\n");
+            } else {
+                printf("El gen '%s' no aparece en la secuencia cargada.\n", geneToFind);
+            }
+            continue;
         }
         if (strcmp(cmd, "bio max") == 0 || strcmp(cmd, "max") == 0)
         {
